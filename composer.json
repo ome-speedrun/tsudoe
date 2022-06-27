@@ -12,7 +12,9 @@
         "laravel/tinker": "^2.7"
     },
     "require-dev": {
+        "barryvdh/laravel-ide-helper": "^2.12",
         "fakerphp/faker": "^1.9.1",
+        "friendsofphp/php-cs-fixer": "^3.8",
         "laravel/sail": "^1.0.1",
         "mockery/mockery": "^1.4.4",
         "nunomaduro/collision": "^6.1",
@@ -44,6 +46,12 @@
         ],
         "post-create-project-cmd": [
             "@php artisan key:generate --ansi"
+        ],
+        "cs-fixer:fix": [
+            "tools/php-cs-fixer/vendor/bin/php-cs-fixer fix"
+        ],
+        "test": [
+            "phpunit"
         ]
     },
     "extra": {
