@@ -2,17 +2,14 @@
 
 namespace App\Http\Requests\Events;
 
-use App\Rules\Events\EventIdRule;
 use App\Rules\Events\SiteTypeRule;
 use App\Usecases\Events\EventMeta;
-use App\Values\Events\EventId;
 use App\Values\Events\HoldingPeriods;
 use App\Values\Events\Period;
 use App\Values\Events\SiteType;
 use App\Values\Events\SubmissionPeriod;
 use Carbon\CarbonImmutable;
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Validation\Rule;
 
 class UpdateMetaRequest extends FormRequest
 {
@@ -24,11 +21,10 @@ class UpdateMetaRequest extends FormRequest
     public function rules()
     {
         return [
-            'event_id' => ['required', new EventIdRule()],
             'periods' => ['required', 'array'],
             'periods.*' => ['array:start,end'],
-            'periods.*.startsAt' => ['required', 'date'],
-            'periods.*.endsAt' => ['required', 'date'],
+            'periods.*.start' => ['required', 'date'],
+            'periods.*.end' => ['required', 'date'],
             'submission' => ['array:open,close'],
             'submission.open' => ['required', 'date'],
             'submission.close' => ['required', 'date'],
@@ -36,18 +32,13 @@ class UpdateMetaRequest extends FormRequest
         ];
     }
 
-    public function getEventId(): EventId
-    {
-        return new EventId($this->input('event_id'));
-    }
-
     public function getHoldingPeriods(): HoldingPeriods
     {
         return new HoldingPeriods(
-            ... collect($this->input('holden_at'))->map(function (array $holdenAt) {
+            ... collect($this->input('periods'))->map(function (array $period) {
                 return new Period(
-                    CarbonImmutable::make($holdenAt['start']),
-                    CarbonImmutable::make($holdenAt['end']),
+                    CarbonImmutable::make($period['start']),
+                    CarbonImmutable::make($period['end']),
                 );
             }),
         );

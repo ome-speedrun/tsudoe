@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Events\MetaUpdateController;
 use App\Http\Controllers\EventsResource;
 use App\Http\Controllers\UsersResource;
 use Illuminate\Http\Request;
@@ -22,3 +23,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::resource('users', UsersResource::class)->only(['show', 'store'])->parameter('users', 'id');
 Route::resource('events', EventsResource::class)->only(['index', 'show', 'store'])->parameter('events', 'identifier');
+Route::put('events/{id}/meta', MetaUpdateController::class)->name('events.meta.update');

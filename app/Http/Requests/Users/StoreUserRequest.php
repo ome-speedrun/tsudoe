@@ -2,8 +2,8 @@
 
 namespace App\Http\Requests\Users;
 
-use App\Rules\UserIdRule;
-use App\Values\Users\UserId;
+use App\Rules\Users\IdentifierRule;
+use App\Values\Users\Identifier;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StoreUserRequest extends FormRequest
@@ -16,12 +16,12 @@ class StoreUserRequest extends FormRequest
     public function rules()
     {
         return [
-            'identifier' => ['required', new UserIdRule()],
+            'identifier' => ['required', new IdentifierRule()],
         ];
     }
 
-    public function getIdentifier(): UserId
+    public function getIdentifier(): Identifier
     {
-        return new UserId($this->input('identifier'));
+        return new Identifier($this->input('identifier'));
     }
 }

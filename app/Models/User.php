@@ -18,6 +18,7 @@ class User extends UuidModel
      */
     protected $fillable = [
         'id',
+        'identifier',
     ];
 
     /**

@@ -3,8 +3,10 @@
 namespace Tests\Feature\Controllers\UsersResource;
 
 use App\Models\User;
+use App\Values\Users\UserId;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Testing\TestResponse;
+use Ramsey\Uuid\Uuid;
 use Tests\TestCase;
 
 class StoreUserTest extends TestCase
@@ -14,25 +16,25 @@ class StoreUserTest extends TestCase
     /** @test */
     public function testStoreNewUser()
     {
-        $identifier = '8e11918b-44d0-4960-b00c-9201805ae23c';
+        $identifier = 'cma2819';
 
         $response = $this->postRequest($identifier);
 
         $response->isSuccessful();
         $response->assertJson([
-            'id' => $identifier,
+            'identifier' => $identifier,
         ]);
         $this->assertDatabaseHas('users', [
-            'id' => $identifier,
+            'identifier' => $identifier,
         ]);
     }
 
     /** @test */
     public function testStoreFailedBecauseDuplicateIdentifier()
     {
-        $identifier = '8e11918b-44d0-4960-b00c-9201805ae23c';
+        $identifier = 'cma2819';
 
-        User::create(['id' => $identifier]);
+        User::create(['id' => new UserId(Uuid::uuid4()), 'identifier' => $identifier]);
         $response = $this->postRequest($identifier);
 
         $response->assertStatus(422);

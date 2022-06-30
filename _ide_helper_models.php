@@ -37,6 +37,7 @@ namespace App\Models{
 /**
  * App\Models\EventHoldingPeriod
  *
+ * @property string $id
  * @property string $event_id
  * @property int $order
  * @property \Illuminate\Support\Carbon $start
@@ -50,6 +51,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|EventHoldingPeriod whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|EventHoldingPeriod whereEnd($value)
  * @method static \Illuminate\Database\Eloquent\Builder|EventHoldingPeriod whereEventId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|EventHoldingPeriod whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|EventHoldingPeriod whereOrder($value)
  * @method static \Illuminate\Database\Eloquent\Builder|EventHoldingPeriod whereStart($value)
  * @method static \Illuminate\Database\Eloquent\Builder|EventHoldingPeriod whereUpdatedAt($value)
@@ -63,8 +65,8 @@ namespace App\Models{
  *
  * @property string $event_id
  * @property string $site_type
- * @property \Illuminate\Support\Carbon $submission_start_at
- * @property \Illuminate\Support\Carbon $submission_end_at
+ * @property \Illuminate\Support\Carbon|null $submission_start_at
+ * @property \Illuminate\Support\Carbon|null $submission_end_at
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \App\Models\Event $event
@@ -110,6 +112,7 @@ namespace App\Models{
  * App\Models\User
  *
  * @property string $id
+ * @property string $identifier
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \Illuminate\Notifications\DatabaseNotificationCollection|\Illuminate\Notifications\DatabaseNotification[] $notifications
@@ -121,6 +124,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|User query()
  * @method static \Illuminate\Database\Eloquent\Builder|User whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|User whereIdentifier($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereUpdatedAt($value)
  */
 	class User extends \Eloquent {}

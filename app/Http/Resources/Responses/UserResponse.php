@@ -20,6 +20,7 @@ class UserResponse extends JsonResource
     {
         return [
             'id' => $this->resource->id,
+            'identifier' => $this->resource->identifier,
         ];
     }
 }

@@ -8,6 +8,7 @@ use App\Http\Resources\Responses\UserResponse;
 use App\Usecases\Users\Exceptions\IdentifierIsDuplicatedException;
 use App\Usecases\Users\FindUser;
 use App\Usecases\Users\RegisterNewUser;
+use App\Values\Users\Identifier;
 use App\Values\Users\UserId;
 use Illuminate\Http\Request;
 
@@ -45,13 +46,13 @@ class UsersResource extends Controller
         string $id,
         FindUser $findUser,
     ) {
-        try {
-            $identifier = new UserId($id);
-        } catch (InvalidValueException $e) {
-            return response()->noContent(404);
+        $user = null;
+        if (UserId::isValid($id)) {
+            $user = $findUser->execute(new UserId($id));
         }
-
-        $user = $findUser->execute($identifier);
+        if (!$user) {
+            $user = $findUser->execute(new Identifier($id));
+        }
 
         return $user ? new UserResponse($user) : response()->noContent(404);
     }
