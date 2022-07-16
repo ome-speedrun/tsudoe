@@ -12,6 +12,84 @@
 
 namespace App\Models{
 /**
+ * App\Models\AdminDiscord
+ *
+ * @property string $id
+ * @property string $discord_id
+ * @property string $administrator_id
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \App\Models\Administrator $administrator
+ * @method static \Illuminate\Database\Eloquent\Builder|AdminDiscord newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|AdminDiscord newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|AdminDiscord query()
+ * @method static \Illuminate\Database\Eloquent\Builder|AdminDiscord whereAdministratorId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|AdminDiscord whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|AdminDiscord whereDiscordId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|AdminDiscord whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|AdminDiscord whereUpdatedAt($value)
+ */
+	class AdminDiscord extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * App\Models\Administrator
+ *
+ * @property string $id
+ * @property string|null $remember_token
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Application[] $applications
+ * @property-read int|null $applications_count
+ * @property-read \App\Models\AdminDiscord|null $discord
+ * @method static \Illuminate\Database\Eloquent\Builder|Administrator newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Administrator newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Administrator query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Administrator whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Administrator whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Administrator whereRememberToken($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Administrator whereUpdatedAt($value)
+ */
+	class Administrator extends \Eloquent implements \Illuminate\Contracts\Auth\Authenticatable {}
+}
+
+namespace App\Models{
+/**
+ * App\Models\Application
+ *
+ * @property string $id
+ * @property string $name
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Administrator[] $administrators
+ * @property-read int|null $administrators_count
+ * @property-read \Illuminate\Database\Eloquent\Collection|\Laravel\Sanctum\PersonalAccessToken[] $tokens
+ * @property-read int|null $tokens_count
+ * @method static \Illuminate\Database\Eloquent\Builder|Application newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Application newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Application query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Application whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Application whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Application whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Application whereUpdatedAt($value)
+ */
+	class Application extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * App\Models\ApplicationAdministrator
+ *
+ * @method static \Illuminate\Database\Eloquent\Builder|ApplicationAdministrator newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|ApplicationAdministrator newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|ApplicationAdministrator query()
+ */
+	class ApplicationAdministrator extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
  * App\Models\Event
  *
  * @property string $id

@@ -10,7 +10,7 @@ class FindUser
 {
     public function execute(UserId|Identifier $identifier): ?User
     {
-        return match($identifier::class) {
+        return match ($identifier::class) {
             UserId::class => User::find($identifier),
             Identifier::class => User::where('identifier', '=', $identifier)->first(),
         };

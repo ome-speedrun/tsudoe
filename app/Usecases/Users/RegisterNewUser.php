@@ -13,7 +13,8 @@ class RegisterNewUser
 {
     public function __construct(
         protected UuidGenerator $uuidGenerator
-    ) {}
+    ) {
+    }
 
     /**
      *

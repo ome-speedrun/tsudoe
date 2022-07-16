@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Rules;
+namespace App\Rules\Users;
 
 use App\Exceptions\Values\InvalidValueException;
 use App\Values\Users\UserId;

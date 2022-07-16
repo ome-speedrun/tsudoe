@@ -57,13 +57,13 @@ class MetaUpdateTest extends TestCase
             'event_id' => $event->getId(),
             'order' => 0,
             'start' => CarbonImmutable::create(2022, 8, 10, 10, 00, 00),
-            'end' => CarbonImmutable::create(2022, 8, 17, 24, 00 ,00),
+            'end' => CarbonImmutable::create(2022, 8, 17, 24, 00, 00),
         ]);
         $this->assertDatabaseHas('event_holding_periods', [
             'event_id' => $event->getId(),
             'order' => 1,
             'start' => CarbonImmutable::create(2022, 8, 18, 9, 00, 00),
-            'end' => CarbonImmutable::create(2022, 8, 19, 15, 00 ,00),
+            'end' => CarbonImmutable::create(2022, 8, 19, 15, 00, 00),
         ]);
         $this->assertDatabaseHas('event_metas', [
             'event_id' => $event->getId(),
